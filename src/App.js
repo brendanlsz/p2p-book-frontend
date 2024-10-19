@@ -4,6 +4,7 @@ import BookForm from './components/BookForm';
 import BorrowRequest from './components/BorrowRequest';
 import IncomingRequests from './components/IncomingRequests';
 import BooksList from './components/BooksList'; // Import the new component
+import MyRequests from './components/MyRequests'; // Import the new component
 
 
 // Check if the user is logged in (token exists in localStorage)
@@ -33,6 +34,7 @@ function App() {
           <BooksList />
           <BookForm />
           <BorrowRequest />
+          <MyRequests />
           <IncomingRequests />
         </>
       )}
