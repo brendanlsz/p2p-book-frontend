@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { createBorrowRequest, getMyRequests, returnBook } from '../api/api'; // Ensure returnBook is imported
+import { createBorrowRequest, getMyRequests } from '../api/api'; // Ensure returnBook is imported
 
 function BorrowRequest() {
   const [bookId, setBookId] = useState('');
-  const [requests, setRequests] = useState([]); // State to hold borrow requests
+  const [, setRequests] = useState([]); // State to hold borrow requests
   const pollingInterval = 5000; // Polling interval in milliseconds
 
   // Fetch existing borrow requests
