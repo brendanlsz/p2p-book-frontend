@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import { login, signup, setToken } from '../api/api';
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Link,
+  Grid,
+  Paper,
+} from '@mui/material';
 
 function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -27,43 +36,72 @@ function Login({ onLoginSuccess }) {
   };
 
   return (
-    <div>
-      <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">{isLogin ? 'Login' : 'Sign Up'}</button>
-      </form>
-      <p>
-        {isLogin ? (
-          <>
-            Don't have an account?{' '}
-            <span onClick={() => setIsLogin(false)} style={{ cursor: 'pointer', color: 'blue' }}>
-              Sign up here
-            </span>
-          </>
-        ) : (
-          <>
-            Already have an account?{' '}
-            <span onClick={() => setIsLogin(true)} style={{ cursor: 'pointer', color: 'blue' }}>
-              Log in here
-            </span>
-          </>
-        )}
-      </p>
-    </div>
+    <Container component="main" maxWidth="xs">
+      <Paper elevation={3} style={{ padding: '20px' }}>
+        <Typography variant="h4" align="center">
+          {isLogin ? 'Login' : 'Sign Up'}
+        </Typography>
+        <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
+          <TextField
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            label="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <TextField
+            variant="outlined"
+            fullWidth
+            margin="normal"
+            label="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            style={{ marginTop: '20px' }}
+          >
+            {isLogin ? 'Login' : 'Sign Up'}
+          </Button>
+        </form>
+        <Grid container justifyContent="center" style={{ marginTop: '20px' }}>
+          <Grid item>
+            <Typography variant="body1">
+              {isLogin ? (
+                <>
+                  Don't have an account?{' '}
+                  <Link
+                    component="span"
+                    onClick={() => setIsLogin(false)}
+                    style={{ cursor: 'pointer', color: '#1976d2' }}
+                  >
+                    Sign up here
+                  </Link>
+                </>
+              ) : (
+                <>
+                  Already have an account?{' '}
+                  <Link
+                    component="span"
+                    onClick={() => setIsLogin(true)}
+                    style={{ cursor: 'pointer', color: '#1976d2' }}
+                  >
+                    Log in here
+                  </Link>
+                </>
+              )}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Paper>
+    </Container>
   );
 }
 

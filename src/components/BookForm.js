@@ -30,7 +30,7 @@ function BookForm() {
     >
       <Box
         sx={{
-          padding: 3,
+          padding: 2, // Reduced padding to decrease height
           border: '1px solid #ccc', // Subtle border
           borderRadius: 2,
           boxShadow: 3, // Slightly deeper shadow for tile effect
@@ -40,7 +40,7 @@ function BookForm() {
           alignItems: 'center', // Center content
         }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h5" gutterBottom> {/* Reduced title size */}
           Create Book Listing
         </Typography>
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
@@ -108,7 +108,7 @@ function BookForm() {
             variant="contained"
             color="primary"
             fullWidth
-            sx={{ marginTop: 2 }}
+            sx={{ marginTop: 1 }} // Reduced margin top for the button
           >
             Create Book
           </Button>

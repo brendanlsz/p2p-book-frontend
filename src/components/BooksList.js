@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { createBorrowRequest } from '../api/api'; // Import the function to request borrowing
+import { createBorrowRequest } from '../api/api';
 import { Box, Card, CardContent, CardMedia, Typography, Button, Grid, Snackbar } from '@mui/material';
 
 const BooksList = () => {
@@ -53,15 +53,23 @@ const BooksList = () => {
   }
 
   return (
-    <Box sx={{ padding: 3 }}>
-      <Card sx={{ padding: 2, boxShadow: 3, borderRadius: 2 }}>
+    <Box sx={{ padding: 2, margin: 2 }}> {/* Outer Box for margin */}
+      <Card sx={{ padding: 2, boxShadow: 3, borderRadius: 2 }}> {/* Main Card */}
         <Typography variant="h4" gutterBottom align="center">
           Books List
         </Typography>
         <Grid container spacing={2}>
           {books.map((book) => (
             <Grid item key={book.id} xs={12} sm={6} md={4} lg={3}>
-              <Card sx={{ borderRadius: 2, boxShadow: 2, transition: 'transform 0.2s ease-in-out', '&:hover': { transform: 'scale(1.03)' } }}>
+              <Card 
+                sx={{ 
+                  borderRadius: 2, 
+                  boxShadow: 2, 
+                  transition: 'transform 0.2s ease-in-out', 
+                  '&:hover': { transform: 'scale(1.03)' },
+                  height: '100%' // Make cards the same height
+                }}
+              >
                 <CardMedia
                   component="img"
                   height="150"

@@ -5,6 +5,30 @@ import BorrowRequest from './components/BorrowRequest';
 import IncomingRequests from './components/IncomingRequests';
 import BooksList from './components/BooksList'; // Import the new component
 import MyRequests from './components/MyRequests'; // Import the new component
+import { Box, Typography } from '@mui/material';
+
+const WelcomeMessage = () => {
+  const email = localStorage.getItem('email');
+
+  return (
+    <Box
+      sx={{
+        padding: 2,
+        borderRadius: 1,
+        backgroundColor: '#e0f7fa', // Light cyan background
+        boxShadow: 2,
+        textAlign: 'center',
+      }}
+    >
+      <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', color: '#00796b' }}>
+        Welcome back,
+      </Typography>
+      <Typography variant="h6" sx={{ color: '#004d40' }}>
+        {email}
+      </Typography>
+    </Box>
+  );
+};
 
 
 // Check if the user is logged in (token exists in localStorage)
@@ -30,7 +54,7 @@ function App() {
       {!loggedIn && <Login onLoginSuccess={handleLoginSuccess} />}
       {loggedIn && (
         <>
-          <p>Welcome back {localStorage.getItem('email')}</p>
+          <WelcomeMessage />
           <BooksList />
           <BookForm />
           <BorrowRequest />
