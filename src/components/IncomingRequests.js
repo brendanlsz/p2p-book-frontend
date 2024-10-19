@@ -63,12 +63,11 @@ function IncomingRequests() {
     <Box
       sx={{
         padding: 3,
-        margin: 2,
+        margin: '32px',
         border: '1px solid #ccc',
         borderRadius: 2,
         boxShadow: 3,
         backgroundColor: '#f9f9f9',
-        width: '100%', // Ensure full width
       }}
     >
       <Typography variant="h5" gutterBottom align="center" sx={{ fontSize: '1.5rem' }}>
