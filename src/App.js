@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Login from './components/Login';
+import BookForm from './components/BookForm';
+import BorrowRequest from './components/BorrowRequest';
+import MyRequests from './components/MyRequests';
+import IncomingRequests from './components/IncomingRequests';
+import BooksList from './components/BooksList'; // Import the new component
+
+
+// Check if the user is logged in (token exists in localStorage)
+const isLoggedIn = () => !!localStorage.getItem('token');
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(isLoggedIn()); // Store login state
+
+  // This effect will run when the component mounts and when the token changes
+  useEffect(() => {
+    setLoggedIn(isLoggedIn());
+  }, []);
+
+  // This function will be passed down to the Login component
+  // It will update the login state when the user logs in
+  const handleLoginSuccess = () => {
+    setLoggedIn(true); // Set the state to logged in when the login is successful
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Book Exchange App</h1>
+      {!loggedIn && <Login onLoginSuccess={handleLoginSuccess} />}
+      {loggedIn && (
+        <>
+          <p>Welcome back {localStorage.getItem('email')}</p>
+          <BooksList />
+          <BookForm />
+          <BorrowRequest />
+          <MyRequests />
+          <IncomingRequests />
+        </>
+      )}
     </div>
   );
 }
