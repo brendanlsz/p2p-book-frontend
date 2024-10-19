@@ -1,5 +1,9 @@
 # Book Exchange App (Frontend)
 
+![image](https://github.com/user-attachments/assets/f51d5932-9144-4600-80cd-031c8eb68186)
+![image](https://github.com/user-attachments/assets/a224dd7b-bf8c-45ed-be33-d37e6f112488)
+
+
 ## Overview
 
 The Book Exchange App is a React-based frontend for a book lending system. It provides an intuitive user interface for users to manage book listings, request to borrow books, and handle incoming and outgoing requests. The app communicates with the Book Exchange API to facilitate seamless user experiences.
