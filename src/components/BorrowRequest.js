@@ -9,7 +9,7 @@ function BorrowRequest() {
   // Fetch existing borrow requests (if needed)
   const fetchRequests = async () => {
     try {
-      const response = await getMyRequests(); // Replace with your actual API call
+      await getMyRequests(); // Replace with your actual API call
       // Handle requests if necessary
     } catch (error) {
       console.error('Error fetching requests:', error);
