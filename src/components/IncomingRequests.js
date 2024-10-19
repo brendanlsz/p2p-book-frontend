@@ -51,22 +51,39 @@ function IncomingRequests() {
   return (
     <div>
       <h2>Incoming Borrow Requests</h2>
-      {requests.map((request) => (
-        <div
-          key={request.id}
-          style={{
-            marginBottom: "10px",
-            border: "1px solid #ccc",
-            padding: "10px",
-          }}
-        >
-          <p>Book ID: {request.bookId}</p>
-          <p>Requester: {request.requesterId}</p>
-          <p>Status: {request.status}</p>
-          <button onClick={() => handleAccept(request.id)}>Accept</button>
-          <button onClick={() => handleReject(request.id)}>Reject</button>
-        </div>
-      ))}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "flex-start", // Align from the left
+          gap: "20px",
+        }}
+      >
+        {requests.map((request) => (
+          <div
+            key={request.id}
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "18px",
+              padding: "10px",
+              width: "200px",
+              textAlign: "center",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+              transition: "transform 0.2s ease-in-out",
+            }}
+          >
+            <p>Book ID: {request.bookId}</p>
+            <p>Requester: {request.requesterId}</p>
+            <p>Status: {request.status}</p>
+            {request.status === "Pending" && (
+              <>
+                <button onClick={() => handleAccept(request.id)}>Accept</button>
+                <button onClick={() => handleReject(request.id)}>Reject</button>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

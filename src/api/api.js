@@ -64,3 +64,7 @@ export const acceptRequest = async (requestId) => {
 export const rejectRequest = async (requestId) => {
   return await apiClient.patch(`/exchanges/${requestId}/reject`);
 };
+
+export const returnBook = async (requestId) => {
+  return await apiClient.patch(`/exchanges/${requestId}/return`);
+};

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
 import BookForm from './components/BookForm';
 import BorrowRequest from './components/BorrowRequest';
-import MyRequests from './components/MyRequests';
 import IncomingRequests from './components/IncomingRequests';
 import BooksList from './components/BooksList'; // Import the new component
 
@@ -34,7 +33,6 @@ function App() {
           <BooksList />
           <BookForm />
           <BorrowRequest />
-          <MyRequests />
           <IncomingRequests />
         </>
       )}

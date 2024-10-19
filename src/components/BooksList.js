@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { createBorrowRequest } from '../api/api'; // Import the function to request borrowing
 
 const BooksList = () => {
   const [books, setBooks] = useState([]);
@@ -22,13 +23,21 @@ const BooksList = () => {
 
   useEffect(() => {
     fetchBooks();
-
     const intervalId = setInterval(() => {
       fetchBooks();
     }, pollingInterval);
-
     return () => clearInterval(intervalId);
   }, []);
+
+  const handleBorrowRequest = async (bookId) => {
+    try {
+      await createBorrowRequest(bookId);
+      alert('Borrow request submitted successfully!');
+    } catch (err) {
+      console.error('Failed to request borrow', err);
+      alert('Failed to submit borrow request.');
+    }
+  };
 
   if (error) {
     return <p>{error}</p>;
@@ -45,8 +54,19 @@ const BooksList = () => {
             <p>Author: {book.author}</p>
             <p>Location: {book.location}</p>
             <p>Condition: {book.condition}</p>
-            <p>id: {book.id}</p>
-            <p>status: {book.status}</p>
+            <p>ID: {book.id}</p>
+            <p>Status: {book.status}</p>
+
+            {/* Check if the current user is not the borrower */}
+            {book.ownerId !== localStorage.getItem('email') && book.status === 'available' && (
+              <button onClick={() => handleBorrowRequest(book.id)}>
+                Request to Borrow
+              </button>
+            )}
+            {(book.ownerId === localStorage.getItem('email')) && (
+                <b>my listing</b>
+            )
+            }
           </div>
         ))}
       </div>
